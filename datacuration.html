@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billboard Top 100 Hits from then to Now</title>
+    <link rel="stylesheet" href="stylespotify.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <h1 class="logo">Spotipy</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Our Project</a></li> <!-- Link to Home Page -->
+                <li><a href="datacuration.html">Data Curation</a></li> <!-- Link to Data Curation Page -->
+                <li><a href="playlists.html">'Playlists'</a></li> <!-- Link to Playlists Page -->
+                <li><a href="datainsights.html">Data Insights</a></li> <!-- Link to Data Insights Page -->
+                <li><a href="aboutus.html">About Us</a></li> <!-- Link to About Us Page -->
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <header>
+            <h2>Data Curation</h2>
+        </header>
+        <section class="project-intro">
+            <h1> how we obtained and cleaned our data </h1>
+            <p>
+                For this project, we’re using a playlist created by a music enthusiast who compiled every 
+                Billboard Top 100 song from 1950 to 2023 into a single playlist. This collection offers a 
+                comprehensive view of the most popular songs spanning over seven decades, capturing over 
+                6,500 songs! By analyzing this playlist with Spotify’s API, we are able to extract key features 
+                such as danceability, tempo, rhythm, melodic quality, and genre, providing insights into 
+                how music has transformed across time and measures up to recent popular songs. This dataset
+                 serves as the foundation for our exploration of taste changes over time. 
+
+            </p>
+
+            <p>
+                We read our data into python using Spotify’s API using a unique secret and Client ID 
+                and had to iterate over the playlist multiple times to be able to extract the data 
+                we need due to Spotify API’s limitation of 100 songs per API Call. This data extraction 
+                might take some time as we work with the limitations of this specific API. From there, we 
+                have worked our data down to reduce certain attributes that might be irrelevant such as 
+                song ID numbers specific to Spotify’s platform as we want this model to be as universal 
+                as possible. 
+
+            </p>
+
+
+            <p>
+
+                Please check out the links below for our playlist data links and project inspiration. 
+            </p>
+        </section>
+        <section class="song-list">
+            <article class="song">
+                <div class="cover"></div>
+                <div class="details">
+                    <h3>Billboard Top 100 songs of each year 1950-2023</h3>
+                    <p>jmlemmon - Spotify</p>
+                </div>
+            </article>
+            <article class="song">
+                <div class="cover"></div>
+                <div class="details">
+                    <h3>The Evolution of Music Genre Popularity</h3>
+                    <p>Jack Beckwith - The DataFace</p>
+                </div>
+            </article>
+            <article class="song">
+                <div class="cover"></div>
+                <div class="details">
+                    <h3>Pop Music Melodies Have Gotten Simpler Over Time</h3>
+                    <p>Ella Feldman - The Smithsonian</p>
+                </div>
+            </article>
+        </section>
+    </div>
+</body>
+</html>

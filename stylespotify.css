@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: white;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #000;
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar .logo {
+    font-size: 24px;
+    color: #1DB954;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li {
+    margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+    color: #1DB954;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+header h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.song-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    background-color: #181818;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.song:hover {
+    background-color: #282828;
+}
+
+.song .cover {
+    width: 60px;
+    height: 60px;
+    background-color: #333;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.song .details h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.song .details p {
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+.about-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #121212;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+}
+
+.about-card {
+    text-align: center;
+    margin: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.about-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.about-card img:hover {
+    transform: scale(1.1); 
+}
+
+.about-card h3 {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.about-card p {
+    font-size: 1rem;
+    color: #b3b3b3;
+}
+
+.project-intro {
+    background-color: #121212; 
+    color: white;
+    padding: 40px 20px; 
+    margin-bottom: 20px; 
+    font-family: 'Roboto', sans-serif; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); 
+}
+
+.project-intro h1 {
+    font-size: 2.5rem; 
+    font-weight: 700; 
+    margin-bottom: 20px;
+}
+
+.project-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #b3b3b3;
+}
