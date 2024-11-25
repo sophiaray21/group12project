@@ -15,7 +15,6 @@
             <ul>
                 <li><a href="index.html">Our Project</a></li> <!-- Link to Home Page -->
                 <li><a href="datacuration.html">Data Curation</a></li> <!-- Link to Data Curation Page -->
-                <li><a href="playlists.html">'Playlists'</a></li> <!-- Link to Playlists Page -->
                 <li><a href="datainsights.html">Data Insights</a></li> <!-- Link to Data Insights Page -->
                 <li><a href="aboutus.html">About Us</a></li> <!-- Link to About Us Page -->
             </ul>
@@ -30,9 +29,131 @@
             <p>
                 We were able to gather a ton of data regarding sound metrics, artis data, ad album data
                 about each of our Billboard Hits and here, visually, are some takeaways and trends we 
-                noticed when we were looking at the data.  
+                noticed when we were looking at the data. Through our analysis, we’ve found how musical 
+                trends have evolved over the years, with shifts in genre popularity, the rise of new artists, 
+                and how listeners' tastes influence the music industry. Check out the visualizations above 
+                for a deep dive into the insights!
             </p>
 
+        </section>
+
+        <section class="image-section">
+            <img src="scatter.jpg" alt="Data Insights Visual" class="main-image">
+        </section>
+
+        <section class="conclusion">
+            <p>
+                The image displays a series of scatter plots that examine the relationship between track popularity 
+                and various audio features, including danceability, energy, speechiness, acousticness, instrumentalness, 
+                liveness, valence, and tempo. In each plot, the x-axis represents one of these features, while the y-axis 
+                tracks the popularity of each song, with values ranging from 0 to 100. These plots help identify any potential 
+                correlations or trends between the features and a track's popularity.
+
+                Upon reviewing the plots, we can see some interesting trends. The danceability vs. popularity plot suggests a 
+                slight positive correlation, with more danceable tracks tending to be somewhat more popular. However, the relationship 
+                appears weak, as the data points are scattered. Similarly, energy vs. popularity shows a moderate positive trend, where
+                 tracks with higher energy levels seem to have a slightly better chance at achieving higher popularity, although the 
+                 correlation is not very strong. In the case of speechiness vs. popularity, the plot reveals a mild positive relationship, 
+                 indicating that tracks with more speech elements might be more popular, but the trend is not highly pronounced. The 
+                 acousticness vs. popularity plot shows a weak negative correlation, with more acoustic tracks generally exhibiting lower 
+                 popularity scores, suggesting that non-acoustic tracks are more likely to perform better.
+
+                The scatter plot for instrumentalness vs. popularity also demonstrates a weak negative correlation, with instrumental tracks 
+                usually having lower popularity. This suggests that vocal tracks are more popular than instrumental ones. Similarly, the
+                 liveness vs. popularity plot points to a slightly negative relationship, with tracks that have a live sound tending to be 
+                 less popular. The valence vs. popularity plot suggests a weak negative correlation, where more positive or happier tracks 
+                 tend to have lower popularity, indicating that melancholic or darker tracks might be favored. Lastly, the tempo vs. 
+                 popularity plot shows a very weak negative trend, suggesting that faster-paced songs do not necessarily perform better in 
+                 terms of popularity.
+            </p>
+        </section>
+
+        <section class="image-section">
+            <img src="boxplot2.jpg" alt="Data Insights Visual" class="main-image">
+        </section>
+
+        <section class="conclusion">
+            <p>
+
+                The box plot visualizes the distribution of track popularity across different genre groups, 
+                with each box representing the most prominent genres. The height of the box shows the interquartile range (IQR) 
+                of popularity scores, while the horizontal line inside the box indicates the median popularity. 
+                The "whiskers" extending from the box represent the range of values, and any points outside the 
+                whiskers are considered outliers. The plot effectively highlights the spread and tendencies
+                of track popularity for each genre group.
+
+                In terms of specific genres, Motown shows a wide distribution with its median track popularity 
+                around 40, indicating a mixture of low and high popularity tracks within this genre. This makes 
+                sense given that the data includes tracks from years long ago where Motown was very popular whereas now 
+                not so much. Rock-and-roll shares a similar distribution with a median around 40, though its box is slightly smaller than that 
+                of Motown, suggesting less variation in popularity. This genre has stood the test of time moreso than Motown. British Invasion and Pop genres have higher median 
+                popularity, around 50 and 60 respectively, indicating more popular tracks within these genres. Country 
+                and Rap genres have a more concentrated distribution, with their popularity centering around the lower 
+                50s to 60s, though Rap shows a few outliers with higher popularity scores. This comparison reveals how 
+                popularity varies across genre groups, with some genres tending to have more popular tracks on average 
+                than others.
+            </p>
+        </section>
+
+        <section class="image-section">
+            <img src="heatmapstatic.jpg" alt="Data Insights Visual" class="main-image">
+        </section>
+
+        <section class="conclusion">
+            <p>
+                Through our analysis, we’ve found how musical trends have evolved over the years, 
+                with shifts in genre popularity, the rise of new artists, and how listeners' tastes 
+                influence the music industry. Check out the visualizations above for a deep dive into 
+                the insights!
+            </p>
+        </section>
+
+        <section class="image-section">
+            <img src="lineplot.jpg" alt="Data Insights Visual" class="main-image">
+        </section>
+
+        <section class="conclusion">
+            <p>
+                This plot shows the density of songs across different genre groups over time, spanning from the 1950s to the 
+                2020s. The x-axis represents the years, while the y-axis shows the number of songs released per genre group 
+                in each year. Different genre groups are represented by distinct colored lines: motown (blue), rock-and-roll 
+                (orange), pop (green), british invasion (purple), country (brown), and rap (red).
+
+From the graph, we can observe several key trends. Rock-and-roll and pop genres dominate in the mid-20th century, with a 
+significant surge in popularity for rock-and-roll in the late 1950s and early 1960s, peaking in the 1970s. Pop music also 
+shows a noticeable increase in the 1980s, continuing to rise steadily into the 2000s and 2010s. On the other hand, motown 
+music shows more moderate growth, with its peak occurring in the 1960s, before declining sharply in the 1970s and remaining 
+relatively low afterward.
+
+The british invasion genre sees its highest points in the 1960s, aligning with the era of British bands' like The Beatles, 
+while country music maintains a steady, low but consistent presence throughout the decades, with a slight uptick in the 2000s. 
+Rap music, however, shows a dramatic rise starting in the 1980s and exploding in popularity in the 2000s and 2010s, surpassing
+ many of the other genre groups. Note here that rap music's trajectory contrasts with that of the other genres, indicating its substantial 
+ and relatively recent impact on the music industry.
+
+Overall, the graph illustrates landscape of music genres, with rock-and-roll and pop dominating the earlier decades,
+ followed by the rise of rap in more recent years. This shift highlights the changing tastes and cultural influences over the 
+ decades, with certain genres like rock-and-roll and motown reaching their peak during specific cultural moments, while others 
+ like pop and rap have sustained long-term growth and remained '#1'.
+
+            </p>
+        </section>
+
+        <iframe src=""https://sophiaray21.github.io/group12project/trackPopOverTime.html" 
+        width="800" 
+        height="500" 
+        frameborder="0">
+         </iframe>
+
+         <section class="conclusion">
+            <p>
+                This interactive plot explores some of the top tracks over the years and their popularities 
+                with data based on their genres. Hover datsa here shows us the track name, genre, peak popularity 
+                on the Billboard Hot 100 chart, and is colored by a genre grouping. Since there are so many genres that 
+                Spotify lists and qualifiesa it was hard to nail down a color mapping that made sense here hence why we 
+                see the category null in the lengend. Check out the interactivity by hovering and moving your mouse over 
+                this visualization. 
+            </p>
         </section>
 
         <section class="song-list">
