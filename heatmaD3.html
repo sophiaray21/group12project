@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Matrix Heatmap</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .heatmap text {
+            fill: white;
+            font-size: 12px;
+        }
+        .axis text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Correlation Matrix of Audio Features</h1>
+    <div id="heatmap"></div>
+
+    <script>
+        d3.json('correlation_matrix.json').then(function(data) {
+            const features = data.index;
+            const matrix = data.data;
+
+            const margin = { top: 100, right: 30, bottom: 100, left: 100 };
+            const width = 600;
+            const height = 600;
+
+            const cellSize = width / features.length;
+
+
+            const svg = d3.select("#heatmap")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+            //scales
+            const x = d3.scaleBand()
+                .domain(features)
+                .range([0, width])
+                .padding(0.01);
+
+            const y = d3.scaleBand()
+                .domain(features)
+                .range([0, height])
+                .padding(0.01);
+
+            const colorScale = d3.scaleSequential()
+                .interpolator(d3.interpolateViridis)
+                .domain([-1, 1]); // Correlation values range
+
+            // Axes Below
+            svg.append("g")
+                .attr("class", "x-axis")
+                .attr("transform", `translate(0, ${height})`)
+                .call(d3.axisBottom(x))
+                .selectAll("text")
+                .attr("transform", "rotate(-45)")
+                .style("text-anchor", "end");
+
+            svg.append("g")
+                .attr("class", "y-axis")
+                .call(d3.axisLeft(y));
+
+            // cells
+            svg.selectAll(".cell")
+                .data(matrix.flatMap((row, i) => row.map((value, j) => ({
+                    x: features[j],
+                    y: features[i],
+                    value
+                }))))
+                .enter()
+                .append("rect")
+                .attr("x", d => x(d.x))
+                .attr("y", d => y(d.y))
+                .attr("width", cellSize)
+                .attr("height", cellSize)
+                .style("fill", d => colorScale(d.value))
+                .on("mouseover", function (event, d) {
+                    d3.select(this).style("stroke", "black").style("stroke-width", 2);
+                    tooltip.style("opacity", 1)
+                        .html(`Correlation: ${d.value.toFixed(2)}`)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 10) + "px");
+                })
+                .on("mouseout", function () {
+                    d3.select(this).style("stroke", "none");
+                    tooltip.style("opacity", 0);
+                });
+
+            // labels
+            svg.selectAll(".cell-text")
+                .data(matrix.flatMap((row, i) => row.map((value, j) => ({
+                    x: features[j],
+                    y: features[i],
+                    value
+                }))))
+                .enter()
+                .append("text")
+                .attr("x", d => x(d.x) + cellSize / 2)
+                .attr("y", d => y(d.y) + cellSize / 2)
+                .text(d => d.value.toFixed(2))
+                .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "middle")
+                .style("fill", "white")
+                .style("font-size", "12px");
+
+            // tooltip
+            const tooltip = d3.select("body")
+                .append("div")
+                .style("position", "absolute")
+                .style("background-color", "rgba(0, 0, 0, 0.8)")
+                .style("color", "white")
+                .style("padding", "5px 10px")
+                .style("border-radius", "4px")
+                .style("opacity", 0);
+        });
+    </script>
+</body>
+</html>
