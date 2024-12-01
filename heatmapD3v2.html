@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Matrix Heatmap</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .heatmap text {
+            fill: white;
+            font-size: 12px;
+        }
+        .axis text {
+            font-size: 14px;
+        }
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Correlation Matrix of Audio Features</h1>
+    <div id="heatmap"></div>
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // Define data (replace this array with your actual data file)
+        let data = [
+    { row: 'danceability', column: 'danceability', value: 1.0 },
+    { row: 'danceability', column: 'energy', value: 0.2151693353 },
+    { row: 'danceability', column: 'valence', value: 0.4052654439 },
+    { row: 'danceability', column: 'tempo', value: -0.1317313208 },
+    { row: 'danceability', column: 'speechiness', value: 0.2403226473 },
+    { row: 'danceability', column: 'acousticness', value: -0.3501657265 },
+    { row: 'danceability', column: 'instrumentalness', value: -0.0259743158 },
+    { row: 'danceability', column: 'track_pop', value: 0.1620992908 },
+    
+    { row: 'energy', column: 'danceability', value: 0.2151693353 },
+    { row: 'energy', column: 'energy', value: 1.0 },
+    { row: 'energy', column: 'valence', value: 0.3720692246 },
+    { row: 'energy', column: 'tempo', value: 0.1500585206 },
+    { row: 'energy', column: 'speechiness', value: 0.1381915319 },
+    { row: 'energy', column: 'acousticness', value: -0.594625611 },
+    { row: 'energy', column: 'instrumentalness', value: -0.0308323722 },
+    { row: 'energy', column: 'track_pop', value: 0.1469850793 },
+    
+    { row: 'valence', column: 'danceability', value: 0.4052654439 },
+    { row: 'valence', column: 'energy', value: 0.3720692246 },
+    { row: 'valence', column: 'valence', value: 1.0 },
+    { row: 'valence', column: 'tempo', value: 0.0893841823 },
+    { row: 'valence', column: 'speechiness', value: 0.0254233169 },
+    { row: 'valence', column: 'acousticness', value: -0.1517046681 },
+    { row: 'valence', column: 'instrumentalness', value: 0.0322047484 },
+    { row: 'valence', column: 'track_pop', value: -0.1299478078 },
+    
+    { row: 'tempo', column: 'danceability', value: -0.1317313208 },
+    { row: 'tempo', column: 'energy', value: 0.1500585206 },
+    { row: 'tempo', column: 'valence', value: 0.0893841823 },
+    { row: 'tempo', column: 'tempo', value: 1.0 },
+    { row: 'tempo', column: 'speechiness', value: 0.0725197649 },
+    { row: 'tempo', column: 'acousticness', value: -0.0709081392 },
+    { row: 'tempo', column: 'instrumentalness', value: -0.0016557426 },
+    { row: 'tempo', column: 'track_pop', value: -0.0054874703 },
+    
+    { row: 'speechiness', column: 'danceability', value: 0.2403226473 },
+    { row: 'speechiness', column: 'energy', value: 0.1381915319 },
+    { row: 'speechiness', column: 'valence', value: 0.0254233169 },
+    { row: 'speechiness', column: 'tempo', value: 0.0725197649 },
+    { row: 'speechiness', column: 'speechiness', value: 1.0 },
+    { row: 'speechiness', column: 'acousticness', value: -0.1746001789 },
+    { row: 'speechiness', column: 'instrumentalness', value: -0.0596237497 },
+    { row: 'speechiness', column: 'track_pop', value: 0.1456453165 },
+    
+    { row: 'acousticness', column: 'danceability', value: -0.3501657265 },
+    { row: 'acousticness', column: 'energy', value: -0.594625611 },
+    { row: 'acousticness', column: 'valence', value: -0.1517046681 },
+    { row: 'acousticness', column: 'tempo', value: -0.0709081392 },
+    { row: 'acousticness', column: 'speechiness', value: -0.1746001789 },
+    { row: 'acousticness', column: 'acousticness', value: 1.0 },
+    { row: 'acousticness', column: 'instrumentalness', value: 0.0689152229 },
+    { row: 'acousticness', column: 'track_pop', value: -0.2607648048 },
+    
+    { row: 'instrumentalness', column: 'danceability', value: -0.0259743158 },
+    { row: 'instrumentalness', column: 'energy', value: -0.0308323722 },
+    { row: 'instrumentalness', column: 'valence', value: 0.0322047484 },
+    { row: 'instrumentalness', column: 'tempo', value: -0.0016557426 },
+    { row: 'instrumentalness', column: 'speechiness', value: -0.0596237497 },
+    { row: 'instrumentalness', column: 'acousticness', value: 0.0689152229 },
+    { row: 'instrumentalness', column: 'instrumentalness', value: 1.0 },
+    { row: 'instrumentalness', column: 'track_pop', value: -0.1034136472 },
+    
+    { row: 'track_pop', column: 'danceability', value: 0.1620992908 },
+    { row: 'track_pop', column: 'energy', value: 0.1469850793 },
+    { row: 'track_pop', column: 'valence', value: -0.1299478078 },
+    { row: 'track_pop', column: 'tempo', value: -0.0054874703 },
+    { row: 'track_pop', column: 'speechiness', value: 0.1456453165 },
+    { row: 'track_pop', column: 'acousticness', value: -0.2607648048 },
+    { row: 'track_pop', column: 'instrumentalness', value: -0.1034136472 },
+    { row: 'track_pop', column: 'track_pop', value: 1.0 }
+  ];
+
+        // Extract unique feature names
+        const features = [...new Set(data.map(d => d.row))];
+
+        const margin = { top: 100, right: 30, bottom: 100, left: 100 };
+        const width = 600;
+        const height = 600;
+
+        const cellSize = width / features.length;
+
+        const svg = d3.select("#heatmap")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        // Scales
+        const x = d3.scaleBand()
+            .domain(features)
+            .range([0, width])
+            .padding(0.01);
+
+        const y = d3.scaleBand()
+            .domain(features)
+            .range([0, height])
+            .padding(0.01);
+
+        const colorScale = d3.scaleSequential()
+            .interpolator(d3.interpolateViridis)
+            .domain([-1, 1]);
+
+        // Axes
+        svg.append("g")
+            .attr("class", "x-axis")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .attr("transform", "rotate(-45)")
+            .style("text-anchor", "end");
+
+        svg.append("g")
+            .attr("class", "y-axis")
+            .call(d3.axisLeft(y));
+
+        // Tooltip
+        const tooltip = d3.select("#tooltip");
+
+        // Cells
+        svg.selectAll(".cell")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", d => x(d.column))
+            .attr("y", d => y(d.row))
+            .attr("width", cellSize)
+            .attr("height", cellSize)
+            .style("fill", d => colorScale(d.value))
+            .on("mouseover", function (event, d) {
+                d3.select(this).style("stroke", "black").style("stroke-width", 2);
+                tooltip.style("opacity", 1)
+                    .html(`Correlation: ${d.value.toFixed(2)}`)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 10) + "px");
+            })
+            .on("mouseout", function () {
+                d3.select(this).style("stroke", "none");
+                tooltip.style("opacity", 0);
+            });
+
+        // Labels
+        svg.selectAll(".cell-text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("x", d => x(d.column) + cellSize / 2)
+            .attr("y", d => y(d.row) + cellSize / 2)
+            .text(d => d.value.toFixed(2))
+            .attr("text-anchor", "middle")
+            .attr("alignment-baseline", "middle")
+            .style("fill", "white")
+            .style("font-size", "12px");
+    </script>
+</body>
+</html>
