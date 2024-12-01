@@ -25,7 +25,7 @@
             <h2>Data Insights</h2>
         </header>
         <section class="project-intro">
-            <h1> what we learned </h1>
+            <h1> What We Learned </h1>
             <p>
                 We were able to gather a ton of data regarding sound metrics, artis data, ad album data
                 about each of our Billboard Hits and here, visually, are some takeaways and trends we 
@@ -108,20 +108,20 @@
                 representing positive correlations, blue representing negative correlations, and lighter shades indicating 
                 weaker relationships.
 
-                From the heatmap, valence (a measure of musical positivity) exhibits the strongest positive correlation with track popularity 
-                (0.41), suggesting that songs with happier or more uplifting tones tend to be more popular. Danceability (0.16), energy (0.15),
-                 and speechiness (0.15) also show mild positive correlations, indicating that tracks with these characteristics slightly tend 
-                 to resonate better with listeners.
+From the heatmap, valence (a measure of musical positivity) exhibits the strongest positive correlation with track popularity 
+(0.41), suggesting that songs with happier or more uplifting tones tend to be more popular. Danceability (0.16), energy (0.15),
+ and speechiness (0.15) also show mild positive correlations, indicating that tracks with these characteristics slightly tend 
+ to resonate better with listeners.
 
-                On the other hand, acousticness (-0.26) has the most notable negative correlation with popularity, implying that highly 
-                acoustic songs are less likely to achieve widespread popularity. Similarly, instrumentalness (-0.10) shows a weak negative 
-                correlation, meaning tracks that are purely instrumental are slightly less likely to be popular. Other features, such as 
-                liveness (-0.05) and tempo (-0.01), show negligible or no meaningful relationship with track popularity.
+On the other hand, acousticness (-0.26) has the most notable negative correlation with popularity, implying that highly 
+acoustic songs are less likely to achieve widespread popularity. Similarly, instrumentalness (-0.10) shows a weak negative 
+correlation, meaning tracks that are purely instrumental are slightly less likely to be popular. Other features, such as 
+liveness (-0.05) and tempo (-0.01), show negligible or no meaningful relationship with track popularity.
 
-                In summary, the heatmap highlights that energetic, danceable, and emotionally positive songs are generally more popular, 
-                while highly acoustic or instrumental tracks are less so. However, the correlations are relatively modest, suggesting that
-                while audio features influence popularity, other factors like artist recognition, marketing, and cultural trends also play 
-                significant roles.
+In summary, the heatmap highlights that energetic, danceable, and emotionally positive songs are generally more popular, 
+while highly acoustic or instrumental tracks are less so. However, the correlations are relatively modest, suggesting that
+ while audio features influence popularity, other factors like artist recognition, marketing, and cultural trends also play 
+ significant roles.
             </p>
         </section>
 
@@ -156,38 +156,239 @@ Overall, the graph illustrates landscape of music genres, with rock-and-roll and
             </p>
         </section>
 
-        <iframe src=""https://sophiaray21.github.io/group12project/trackPopOverTime.html" 
-        width="800" 
-        height="500" 
+        <iframe src="trackPopOverTime.html" 
+        width="1200" 
+        height="600" 
         frameborder="0">
          </iframe>
 
          <section class="conclusion">
             <p>
                 This interactive plot explores some of the top tracks over the years and their popularities 
-                with data based on their genres. Hover datsa here shows us the track name, genre, peak popularity 
+                with data based on their genres. Hover data here shows us the track name, genre, peak popularity 
                 on the Billboard Hot 100 chart, and is colored by a genre grouping. Since there are so many genres that 
-                Spotify lists and qualifiesa it was hard to nail down a color mapping that made sense here hence why we 
+                Spotify lists and qualifies as valid, it was hard to nail down a color mapping that made sense here hence why we 
                 see the category null in the lengend. Check out the interactivity by hovering and moving your mouse over 
-                this visualization. 
+                this visualization. Note: that in this chart, 0 corresponds to the lowest rating of popularity and 90 corresponds to the highest popularity. 
             </p>
         </section>
 
-        <section class="song-list">
-            <article class="song">
-                <div class="cover"></div>
-                <div class="details">
-                    <h3>Song Name</h3>
-                    <p>Artist Name</p>
-                </div>
-            </article>
-            <article class="song">
-                <div class="cover"></div>
-                <div class="details">
-                    <h3>Another Song</h3>
-                    <p>Another Artist</p>
-                </div>
-            </article>
+
+         <div id="heatmap">
+    
+
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Correlation Matrix Heatmap</title>
+                <script src="https://d3js.org/d3.v7.min.js"></script>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                    }
+                    .heatmap text {
+                        fill: white;
+                        font-size: 12px;
+                    }
+                    .axis text {
+                        font-size: 14px;
+                    }
+                    .tooltip {
+                        position: absolute;
+                        background-color: rgba(0, 0, 0, 0.8);
+                        color: white;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        opacity: 0;
+                        pointer-events: none;
+                        transition: opacity 0.2s;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>Interactive Correlation Matrix of Audio Features</h1>
+                <div id="heatmap"></div>
+                <div class="tooltip" id="tooltip"></div>
+            
+                <script>
+                    let data = [
+                { row: 'danceability', column: 'danceability', value: 1.0 },
+                { row: 'danceability', column: 'energy', value: 0.2151693353 },
+                { row: 'danceability', column: 'valence', value: 0.4052654439 },
+                { row: 'danceability', column: 'tempo', value: -0.1317313208 },
+                { row: 'danceability', column: 'speechiness', value: 0.2403226473 },
+                { row: 'danceability', column: 'acousticness', value: -0.3501657265 },
+                { row: 'danceability', column: 'instrumentalness', value: -0.0259743158 },
+                { row: 'danceability', column: 'track_pop', value: 0.1620992908 },
+                
+                { row: 'energy', column: 'danceability', value: 0.2151693353 },
+                { row: 'energy', column: 'energy', value: 1.0 },
+                { row: 'energy', column: 'valence', value: 0.3720692246 },
+                { row: 'energy', column: 'tempo', value: 0.1500585206 },
+                { row: 'energy', column: 'speechiness', value: 0.1381915319 },
+                { row: 'energy', column: 'acousticness', value: -0.594625611 },
+                { row: 'energy', column: 'instrumentalness', value: -0.0308323722 },
+                { row: 'energy', column: 'track_pop', value: 0.1469850793 },
+                
+                { row: 'valence', column: 'danceability', value: 0.4052654439 },
+                { row: 'valence', column: 'energy', value: 0.3720692246 },
+                { row: 'valence', column: 'valence', value: 1.0 },
+                { row: 'valence', column: 'tempo', value: 0.0893841823 },
+                { row: 'valence', column: 'speechiness', value: 0.0254233169 },
+                { row: 'valence', column: 'acousticness', value: -0.1517046681 },
+                { row: 'valence', column: 'instrumentalness', value: 0.0322047484 },
+                { row: 'valence', column: 'track_pop', value: -0.1299478078 },
+                
+                { row: 'tempo', column: 'danceability', value: -0.1317313208 },
+                { row: 'tempo', column: 'energy', value: 0.1500585206 },
+                { row: 'tempo', column: 'valence', value: 0.0893841823 },
+                { row: 'tempo', column: 'tempo', value: 1.0 },
+                { row: 'tempo', column: 'speechiness', value: 0.0725197649 },
+                { row: 'tempo', column: 'acousticness', value: -0.0709081392 },
+                { row: 'tempo', column: 'instrumentalness', value: -0.0016557426 },
+                { row: 'tempo', column: 'track_pop', value: -0.0054874703 },
+                
+                { row: 'speechiness', column: 'danceability', value: 0.2403226473 },
+                { row: 'speechiness', column: 'energy', value: 0.1381915319 },
+                { row: 'speechiness', column: 'valence', value: 0.0254233169 },
+                { row: 'speechiness', column: 'tempo', value: 0.0725197649 },
+                { row: 'speechiness', column: 'speechiness', value: 1.0 },
+                { row: 'speechiness', column: 'acousticness', value: -0.1746001789 },
+                { row: 'speechiness', column: 'instrumentalness', value: -0.0596237497 },
+                { row: 'speechiness', column: 'track_pop', value: 0.1456453165 },
+                
+                { row: 'acousticness', column: 'danceability', value: -0.3501657265 },
+                { row: 'acousticness', column: 'energy', value: -0.594625611 },
+                { row: 'acousticness', column: 'valence', value: -0.1517046681 },
+                { row: 'acousticness', column: 'tempo', value: -0.0709081392 },
+                { row: 'acousticness', column: 'speechiness', value: -0.1746001789 },
+                { row: 'acousticness', column: 'acousticness', value: 1.0 },
+                { row: 'acousticness', column: 'instrumentalness', value: 0.0689152229 },
+                { row: 'acousticness', column: 'track_pop', value: -0.2607648048 },
+                
+                { row: 'instrumentalness', column: 'danceability', value: -0.0259743158 },
+                { row: 'instrumentalness', column: 'energy', value: -0.0308323722 },
+                { row: 'instrumentalness', column: 'valence', value: 0.0322047484 },
+                { row: 'instrumentalness', column: 'tempo', value: -0.0016557426 },
+                { row: 'instrumentalness', column: 'speechiness', value: -0.0596237497 },
+                { row: 'instrumentalness', column: 'acousticness', value: 0.0689152229 },
+                { row: 'instrumentalness', column: 'instrumentalness', value: 1.0 },
+                { row: 'instrumentalness', column: 'track_pop', value: -0.1034136472 },
+                
+                { row: 'track_pop', column: 'danceability', value: 0.1620992908 },
+                { row: 'track_pop', column: 'energy', value: 0.1469850793 },
+                { row: 'track_pop', column: 'valence', value: -0.1299478078 },
+                { row: 'track_pop', column: 'tempo', value: -0.0054874703 },
+                { row: 'track_pop', column: 'speechiness', value: 0.1456453165 },
+                { row: 'track_pop', column: 'acousticness', value: -0.2607648048 },
+                { row: 'track_pop', column: 'instrumentalness', value: -0.1034136472 },
+                { row: 'track_pop', column: 'track_pop', value: 1.0 }
+              ];
+            
+                    // Extract unique feature names
+                    const features = [...new Set(data.map(d => d.row))];
+            
+                    const margin = { top: 100, right: 30, bottom: 100, left: 100 };
+                    const width = 600;
+                    const height = 600;
+            
+                    const cellSize = width / features.length;
+            
+                    const svg = d3.select("#heatmap")
+                        .append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+            
+                    // Scales
+                    const x = d3.scaleBand()
+                        .domain(features)
+                        .range([0, width])
+                        .padding(0.01);
+            
+                    const y = d3.scaleBand()
+                        .domain(features)
+                        .range([0, height])
+                        .padding(0.01);
+            
+                    const colorScale = d3.scaleSequential()
+                        .interpolator(d3.interpolateViridis)
+                        .domain([-1, 1]);
+            
+                    // Axes
+                    svg.append("g")
+                        .attr("class", "x-axis")
+                        .attr("transform", `translate(0, ${height})`)
+                        .call(d3.axisBottom(x))
+                        .selectAll("text")
+                        .attr("transform", "rotate(-45)")
+                        .style("text-anchor", "end");
+            
+                    svg.append("g")
+                        .attr("class", "y-axis")
+                        .call(d3.axisLeft(y));
+            
+                    // Tooltip
+                    const tooltip = d3.select("#tooltip");
+            
+                    // Cells
+                    svg.selectAll(".cell")
+                        .data(data)
+                        .enter()
+                        .append("rect")
+                        .attr("x", d => x(d.column))
+                        .attr("y", d => y(d.row))
+                        .attr("width", cellSize)
+                        .attr("height", cellSize)
+                        .style("fill", d => colorScale(d.value))
+                        .on("mouseover", function (event, d) {
+                            d3.select(this).style("stroke", "black").style("stroke-width", 2);
+                            tooltip.style("opacity", 1)
+                                .html(`Correlation: ${d.value.toFixed(2)}`)
+                                .style("left", (event.pageX + 10) + "px")
+                                .style("top", (event.pageY - 10) + "px");
+                        })
+                        .on("mouseout", function () {
+                            d3.select(this).style("stroke", "none");
+                            tooltip.style("opacity", 0);
+                        });
+            
+                    // Labels
+                    svg.selectAll(".cell-text")
+                        .data(data)
+                        .enter()
+                        .append("text")
+                        .attr("x", d => x(d.column) + cellSize / 2)
+                        .attr("y", d => y(d.row) + cellSize / 2)
+                        .text(d => d.value.toFixed(2))
+                        .attr("text-anchor", "middle")
+                        .attr("alignment-baseline", "middle")
+                        .style("fill", "white")
+                        .style("font-size", "12px");
+                </script>
+            </body>
+
+
+         </div>
+
+         <section class="conclusion">
+            <p>
+                This interactive heatmap shows us some of the key audio metrics for some of the most popular somge over the years such as, danceability, acousticness, 
+                energy, along with the individual tracks. In this visualization, the darker the color of the square for the intersection of the two metrics the stronger
+                 the positive or negative corrrelations between them. We can see here that there are strong negative correlations between acousticness and track popularity, 
+                 as well as between acousticness and energy. This makes sense when examining top tracks as many popular songs are generally upbeat and catchy. There are weak/low 
+                 correlations among other metrics like valence (how likely a song is to make someone happy or sad), and speechiness as well as valence and instrumentalness. 
+                 Some positive correlations we see here are danceability and valence at about 0.41. This makes sense that of the fraction of popular songs that are upbeat, 
+                 they are also very danceable. 
+            </p>
+        </section>
+
+        <section class="conclusion">
+            <p>
+                Some of the key takeaways from our data analysis are that there are a sort of mixed bag of genres or mostly blends of genres that make up the Billboard Top 
+                100 year over year. Additionally some of the key ingredients in terms of audio quality that make up a hit song are danceability, valence, and energy.
+            </p>
         </section>
     </div>
 </body>
