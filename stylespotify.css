@@ -142,13 +142,13 @@ header h2 {
 }
 
 .project-intro h1 {
-    font-size: 2.5rem; 
+    font-size: 2 rem; 
     font-weight: 700; 
     margin-bottom: 20px;
 }
 
 .project-intro p {
-    font-size: 1rem;
+    font-size: 1.5rem;
     line-height: 1.6;
     color: #b3b3b3;
 }
@@ -159,11 +159,36 @@ header h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0; /* Adds some spacing around the image */
+    margin: 20px 0; 
 }
 
 .image-section img {
     width: 100%;
-    object-fit: cover; /* Ensures the image covers the container without distortion */
-    border-radius: 8px; /* Optional: Adds rounded corners */
+    object-fit: cover; 
+    border-radius: 8px; 
+}
+
+.conclusion {
+    margin-bottom: 40px;
+    line-height: 1.6; 
+}
+
+.padding-element {
+    height: 20px;
+}
+
+.conclusion {
+    background-color: #121212; 
+    color: white;
+    padding: 40px 20px; 
+    margin-bottom: 20px; 
+    font-family: 'Roboto', sans-serif; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); 
+}
+
+.conclusion h1 {
+    font-size: 2.5 rem; 
+    font-weight: 700; 
+    margin-bottom: 20px;
 }
