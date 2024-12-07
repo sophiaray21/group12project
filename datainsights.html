@@ -68,6 +68,8 @@
             </p>
         </section>
 
+        <div class="padding-element"></div>
+
         <section class="image-section">
             <img src="boxplot2.jpg" alt="Data Insights Visual" class="main-image">
         </section>
@@ -95,35 +97,8 @@
             </p>
         </section>
 
-        <section class="image-section">
-            <img src="heatmapstatic.jpg" alt="Data Insights Visual" class="main-image">
-        </section>
 
-        <section class="conclusion">
-            <p>
-                This heatmap displays the correlation between various Spotify audio features and track popularity 
-                (labeled as "track_pop"). The correlations range from -1 to 1, where values closer to 1 indicate a 
-                strong positive relationship, values closer to -1 indicate a strong negative relationship, and values 
-                near 0 suggest little to no correlation. The color gradient visualizes these correlations, with red 
-                representing positive correlations, blue representing negative correlations, and lighter shades indicating 
-                weaker relationships.
-
-From the heatmap, valence (a measure of musical positivity) exhibits the strongest positive correlation with track popularity 
-(0.41), suggesting that songs with happier or more uplifting tones tend to be more popular. Danceability (0.16), energy (0.15),
- and speechiness (0.15) also show mild positive correlations, indicating that tracks with these characteristics slightly tend 
- to resonate better with listeners.
-
-On the other hand, acousticness (-0.26) has the most notable negative correlation with popularity, implying that highly 
-acoustic songs are less likely to achieve widespread popularity. Similarly, instrumentalness (-0.10) shows a weak negative 
-correlation, meaning tracks that are purely instrumental are slightly less likely to be popular. Other features, such as 
-liveness (-0.05) and tempo (-0.01), show negligible or no meaningful relationship with track popularity.
-
-In summary, the heatmap highlights that energetic, danceable, and emotionally positive songs are generally more popular, 
-while highly acoustic or instrumental tracks are less so. However, the correlations are relatively modest, suggesting that
- while audio features influence popularity, other factors like artist recognition, marketing, and cultural trends also play 
- significant roles.
-            </p>
-        </section>
+        <div class="padding-element"></div>
 
         <section class="image-section">
             <img src="lineplot.jpg" alt="Data Insights Visual" class="main-image">
@@ -156,6 +131,8 @@ Overall, the graph illustrates landscape of music genres, with rock-and-roll and
             </p>
         </section>
 
+        <div class="padding-element"></div>
+
         <iframe src="trackPopOverTime.html" 
         width="1200" 
         height="600" 
@@ -172,6 +149,8 @@ Overall, the graph illustrates landscape of music genres, with rock-and-roll and
                 this visualization. Note: that in this chart, 0 corresponds to the lowest rating of popularity and 90 corresponds to the highest popularity. 
             </p>
         </section>
+
+        <div class="padding-element"></div>
 
 
          <div id="heatmap">
@@ -374,15 +353,31 @@ Overall, the graph illustrates landscape of music genres, with rock-and-roll and
 
          <section class="conclusion">
             <p>
-                This interactive heatmap shows us some of the key audio metrics for some of the most popular somge over the years such as, danceability, acousticness, 
-                energy, along with the individual tracks. In this visualization, the darker the color of the square for the intersection of the two metrics the stronger
-                 the positive or negative corrrelations between them. We can see here that there are strong negative correlations between acousticness and track popularity, 
-                 as well as between acousticness and energy. This makes sense when examining top tracks as many popular songs are generally upbeat and catchy. There are weak/low 
-                 correlations among other metrics like valence (how likely a song is to make someone happy or sad), and speechiness as well as valence and instrumentalness. 
-                 Some positive correlations we see here are danceability and valence at about 0.41. This makes sense that of the fraction of popular songs that are upbeat, 
-                 they are also very danceable. 
+                This heatmap displays the correlation between various Spotify audio features and track popularity 
+                (labeled as "track_pop"). The correlations range from -1 to 1, where values closer to 1 indicate a 
+                strong positive relationship, values closer to -1 indicate a strong negative relationship, and values 
+                near 0 suggest little to no correlation. The color gradient visualizes these correlations, with red 
+                representing positive correlations, blue representing negative correlations, and lighter shades indicating 
+                weaker relationships.
+
+From the heatmap, valence (a measure of musical positivity) exhibits the strongest positive correlation with track popularity 
+(0.41), suggesting that songs with happier or more uplifting tones tend to be more popular. Danceability (0.16), energy (0.15),
+ and speechiness (0.15) also show mild positive correlations, indicating that tracks with these characteristics slightly tend 
+ to resonate better with listeners.
+
+On the other hand, acousticness (-0.26) has the most notable negative correlation with popularity, implying that highly 
+acoustic songs are less likely to achieve widespread popularity. Similarly, instrumentalness (-0.10) shows a weak negative 
+correlation, meaning tracks that are purely instrumental are slightly less likely to be popular. Otsher features, such as 
+liveness (-0.05) and tempo (-0.01), show negligible or no meaningful relationship with track popularity.
+
+In summary, the heatmap highlights that energetic, danceable, and emotionally positive songs are generally more popular, 
+while highly acoustic or instrumental tracks are less so. However, the correlations are relatively modest, suggesting that
+ while audio features influence popularity, other factors like artist recognition, marketing, and cultural trends also play 
+ significant roles.
             </p>
         </section>
+
+        <div class="padding-element"></div>
 
         <section class="conclusion">
             <p>
